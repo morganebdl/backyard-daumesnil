@@ -13,7 +13,7 @@ Site statique (HTML/CSS/JS, aucun outil à installer). Ouvrir `index.html` dans 
 ## Mettre en ligne (GitHub Pages, gratuit)
 1. Créer un dépôt GitHub et y pousser ce dossier.
 2. Settings → Pages → Source : branche `main`, dossier `/ (root)`.
-3. Le fichier `CNAME` indique déjà le domaine. Chez le registrar du domaine, ajouter :
+3. Le fichier `CNAME` indique le domaine (backyard-daumesnil.fr, acheté chez OVH). Chez le registrar du domaine, ajouter :
    - 4 enregistrements `A` sur `@` : 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
    - un `CNAME` sur `www` → `<utilisateur>.github.io`
 4. Une fois le DNS propagé, cocher « Enforce HTTPS ».
