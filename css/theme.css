@@ -1,0 +1,36 @@
+/* =========================================================
+   THÈME — c'est le SEUL fichier à modifier pour changer
+   les couleurs et la typographie du site.
+   Charte : fond grège, traits noirs fins, cartes blanches
+   façon post Instagram, accents brun / vert forêt / rouge.
+   ========================================================= */
+
+/* 1. Polices : changer l'URL Google Fonts ici
+      (et les noms dans --font-display / --font-body plus bas) */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap");
+
+:root {
+  /* --- Typographie --- */
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif; /* titres (gras, capitales) */
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;    /* texte */
+  --tracking-date: 0.28em;      /* espacement des dates « 06/02/2027 » */
+
+  /* --- Couleurs principales --- */
+  --color-bg: #F5F5F0;          /* fond général (grège) */
+  --color-bg-alt: #E6D8C3;      /* fond des sections alternées */
+  --color-surface: #ffffff;     /* cartes (blanc « post ») */
+  --color-ink: #1c1c1c;         /* traits, bordures, titres */
+  --color-text: #1c1c1c;        /* texte principal */
+  --color-text-muted: #4d4b45;  /* texte secondaire */
+
+  --color-brown: #C2A68C;       /* accent 1 : brun */
+  --color-green: #5D866C;       /* accent 2 : vert forêt */
+  --color-heart: #e5322d;       /* rouge « like » (petites touches seulement) */
+  --color-on-accent: #ffffff;   /* texte posé sur brun / vert / encre */
+
+  /* --- Formes --- */
+  --line: 1.5px;                /* épaisseur des traits */
+  --radius: 28px;               /* cartes « post » */
+  --radius-sm: 14px;
+  --max-width: 1100px;
+}

@@ -1,0 +1,323 @@
+/* Mise en page — utilise uniquement les variables de theme.css */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+img, video, iframe { max-width: 100%; display: block; }
+a { color: var(--color-ink); text-underline-offset: 3px; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  margin: 0 0 0.5em;
+  color: var(--color-ink);
+}
+h2 { font-size: clamp(1.9rem, 4.6vw, 3rem); }
+h3 { font-size: 1.25rem; }
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+section { padding: 80px 0; }
+section.alt { background: var(--color-bg-alt); }
+.lead { font-size: 1.12rem; color: var(--color-text-muted); }
+
+/* --- Étiquette encadrée « +++ | TEXTE » (signature de la charte) --- */
+.kicker, .label {
+  display: inline-flex; align-items: stretch;
+  border: var(--line) solid var(--color-ink);
+  font-size: 0.95rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 22px; background: transparent; color: var(--color-ink);
+}
+.kicker::before, .label::before {
+  content: "+ + +"; display: grid; place-items: center;
+  padding: 6px 18px; border-right: var(--line) solid var(--color-ink);
+  letter-spacing: 0.1em; font-weight: 400;
+}
+.kicker { padding-right: 22px; gap: 22px; align-items: center; min-height: 40px; line-height: 1; }
+.kicker::before { align-self: stretch; }
+/* Variante date : italique espacée, « +++ » à gauche */
+.label.date { font-style: italic; font-weight: 400; letter-spacing: var(--tracking-date); font-size: 1.5rem; gap: 0; }
+.label.date span { display: grid; place-items: center; padding: 6px 28px; }
+/* Variante lieu : « +++ » à droite */
+.label.end { flex-direction: row-reverse; }
+.label.end::before { border-right: 0; border-left: var(--line) solid var(--color-ink); }
+.label.end span { display: grid; place-items: center; padding: 8px 40px; font-size: 1.3rem; letter-spacing: 0.02em; }
+
+/* Flèche décorative ↙ */
+.arrow {
+  display: inline-block; width: 40px; height: 40px; color: var(--color-ink);
+}
+
+/* --- Boutons --- */
+.btn {
+  display: inline-block;
+  padding: 13px 26px;
+  border: var(--line) solid var(--color-ink);
+  border-radius: 0;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.9rem;
+  text-decoration: none;
+  background: var(--color-ink);
+  color: var(--color-on-accent);
+  transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0 var(--color-ink); }
+.btn.ghost { background: transparent; color: var(--color-ink); }
+.btn.ghost:hover { background: var(--color-surface); }
+
+/* --- Navigation --- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--color-ink);
+  color: var(--color-on-accent);
+}
+.nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav .logo {
+  font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.04em;
+  color: var(--color-on-accent); text-decoration: none; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav .logo span { font-weight: 400; }
+.nav .logo .avatar { border-color: var(--color-on-accent); }
+.nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; align-items: center; }
+.nav ul a { color: var(--color-on-accent); text-decoration: none; font-weight: 500; font-size: 0.92rem; }
+.nav ul a:hover { text-decoration: underline; }
+.nav .btn { padding: 8px 16px; font-size: 0.82rem; background: var(--color-surface); color: var(--color-ink); border-color: var(--color-surface); }
+.nav .btn:hover { text-decoration: none; transform: none; box-shadow: none; background: var(--color-bg); }
+.nav-toggle { display: none; background: none; border: 0; color: var(--color-on-accent); font-size: 1.6rem; cursor: pointer; }
+
+@media (max-width: 860px) {
+  .nav-toggle { display: block; }
+  .nav ul {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    flex-direction: column; gap: 0; background: var(--color-ink);
+    border-top: 1px solid color-mix(in srgb, var(--color-on-accent) 20%, transparent);
+  }
+  .nav ul.open { display: flex; }
+  .nav ul li { width: 100%; text-align: center; padding: 12px 0; }
+}
+
+/* --- Avatar rond (photo du temple de l'île de Reuilly) --- */
+.avatar {
+  flex: none; width: 52px; height: 52px; border-radius: 50%;
+  border: var(--line) solid var(--color-ink);
+  background: var(--color-green) url("../assets/images/avatar.jpg") center / cover no-repeat;
+}
+.nav .avatar { width: 34px; height: 34px; }
+
+/* --- Carte « post Instagram » --- */
+.post {
+  background: var(--color-surface);
+  border: var(--line) solid var(--color-ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.post-head { display: flex; align-items: center; gap: 16px; padding: 18px 22px 14px; }
+.post-head h3 { margin: 0; flex: 1; font-size: 1.15rem; }
+.post-head .dots { font-size: 1.4rem; letter-spacing: 0.08em; line-height: 1; font-weight: 700; }
+.post-media { aspect-ratio: 16 / 10; background: var(--color-bg-alt); border-top: var(--line) solid var(--color-ink); border-bottom: var(--line) solid var(--color-ink); }
+.post-media iframe, .post-media video, .post-media img { width: 100%; height: 100%; border: 0; object-fit: cover; }
+.post-actions { display: flex; gap: 18px; align-items: center; padding: 14px 22px 4px; }
+.post-actions svg { width: 30px; height: 30px; fill: none; stroke: var(--color-ink); stroke-width: 1.8; stroke-linejoin: round; }
+.post-actions .heart { fill: var(--color-heart); stroke: var(--color-heart); }
+.post-actions .save { margin-left: auto; }
+.post-body { padding: 8px 22px 22px; }
+.post-body p { margin: 0 0 1em; }
+.post-body p:last-child, .post-body ul:last-child { margin-bottom: 0; }
+.post-body ul { padding-left: 1.1em; }
+.post .tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  border: var(--line) solid var(--color-ink); padding: 3px 10px; margin-bottom: 12px;
+}
+
+/* Carrousel : post central + cartes brune / verte qui dépassent */
+.carousel { position: relative; padding: 0 clamp(28px, 6vw, 64px); }
+.carousel::before, .carousel::after {
+  content: ""; position: absolute; top: 8%; bottom: 8%; width: clamp(40px, 9vw, 110px);
+  border: var(--line) solid var(--color-ink); border-radius: var(--radius); z-index: 0;
+}
+.carousel::before { left: -40px; background: var(--color-brown); }
+.carousel::after { right: -40px; background: var(--color-green); }
+.carousel .post { position: relative; z-index: 1; }
+.carousel .arrow { position: absolute; right: 0; top: -46px; }
+
+/* --- Hero --- */
+.hero { padding: 56px 0 90px; overflow: hidden; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(2.8rem, 7.5vw, 5.4rem); font-weight: 800; }
+.hero h1 em { font-style: normal; font-weight: 400; display: block; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 18px 0 28px; font-weight: 500; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero .label.end { margin-top: 36px; }
+
+/* Sur ordinateur : tout l'en-tête tient dans la hauteur de l'écran */
+@media (min-width: 861px) {
+  .hero {
+    min-height: calc(100svh - 64px);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(16px, 3.5vh, 48px) 0;
+  }
+  .hero > .container { width: 100%; }
+  .hero-grid { grid-template-columns: 1.1fr 1fr; gap: 48px; }
+  .hero h1 { font-size: clamp(2.4rem, min(5.2vw, 9.5vh), 5rem); margin-bottom: 0.3em; white-space: nowrap; }
+  .hero .label.date { font-size: clamp(1rem, 2.6vh, 1.5rem); margin-bottom: clamp(10px, 2.5vh, 22px); }
+  .hero-meta { margin: 0 0 clamp(12px, 2.8vh, 28px); }
+  .countdown { margin-top: clamp(14px, 3vh, 32px); }
+  .countdown strong { font-size: clamp(1.4rem, 4vh, 2rem); }
+  .countdown div { padding: clamp(6px, 1.2vh, 10px) 16px; }
+  .hero .post-media { aspect-ratio: auto; height: clamp(120px, 30vh, 340px); }
+  .hero .post-head { padding: clamp(10px, 1.8vh, 18px) 22px clamp(8px, 1.4vh, 14px); }
+  .hero .post-body { padding-bottom: clamp(12px, 2.2vh, 22px); }
+  .hero .label.end { margin-top: clamp(12px, 2.5vh, 36px); }
+  .hero .label.end span { padding: 6px 36px; font-size: 1.15rem; }
+  .carousel .arrow { top: -40px; }
+}
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .label.date { font-size: 1.1rem; }
+  .label.date span { padding: 6px 16px; }
+}
+
+/* Compte à rebours */
+.countdown { display: flex; gap: 0; margin-top: 32px; border: var(--line) solid var(--color-ink); width: fit-content; }
+.countdown div { padding: 10px 16px; min-width: 76px; text-align: center; }
+.countdown div + div { border-left: var(--line) solid var(--color-ink); }
+.countdown strong { display: block; font-family: var(--font-display); font-weight: 700; font-size: 2rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.countdown span { font-size: 0.72rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: .12em; }
+
+/* Emplacements médias */
+.placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; color: var(--color-text-muted); text-align: center; padding: 20px; gap: 6px;
+}
+.placeholder b { font-size: 2.4rem; color: var(--color-ink); line-height: 1; }
+
+/* --- Chiffres clés --- */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0; }
+.stat { background: var(--color-surface); border-radius: var(--radius-sm); padding: 22px; border: var(--line) solid var(--color-ink); }
+.stat strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 2.3rem; line-height: 1; margin-bottom: 6px; }
+.stat:nth-child(2) { background: var(--color-brown); color: var(--color-on-accent); }
+.stat:nth-child(4) { background: var(--color-green); color: var(--color-on-accent); }
+.stat span { font-size: 0.95rem; }
+.stat strong { white-space: nowrap; }
+@media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } .stat strong { font-size: 1.8rem; } }
+
+/* --- Cartes génériques (même style que les posts) --- */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.card { background: var(--color-surface); border: var(--line) solid var(--color-ink); border-radius: var(--radius); padding: 26px; }
+.card p:last-child, .card ul:last-child { margin-bottom: 0; }
+.card ul { padding-left: 1.1em; }
+.card .tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  border: var(--line) solid var(--color-ink); padding: 3px 10px; margin-bottom: 12px;
+}
+
+/* Règles numérotées */
+.rules { counter-reset: rule; list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; max-width: 820px; }
+.rules li { counter-increment: rule; position: relative; padding: 5px 0 0 50px; min-height: 34px; }
+.rules li::before {
+  content: counter(rule); position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%;
+  border: var(--line) solid var(--color-ink); background: var(--color-surface);
+  font-weight: 700; display: grid; place-items: center;
+}
+
+/* --- Programme (timeline) --- */
+.timeline { list-style: none; padding: 0; margin: 0; border-left: var(--line) solid var(--color-ink); }
+.timeline li { padding: 0 0 26px 26px; position: relative; }
+.timeline li::before {
+  content: ""; position: absolute; left: -8px; top: 6px; width: 15px; height: 15px;
+  border-radius: 50%; background: var(--color-surface); border: var(--line) solid var(--color-ink);
+}
+.timeline li:last-child::before { background: var(--color-heart); border-color: var(--color-heart); }
+.timeline time { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; display: block; line-height: 1.1; letter-spacing: 0.04em; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+@media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+
+/* --- Carte parcours --- */
+.map-frame { display: block; aspect-ratio: 8 / 5; border-radius: var(--radius); overflow: hidden; border: var(--line) solid var(--color-ink); background: var(--color-surface); }
+.map-frame iframe, .map-frame img { width: 100%; height: 100%; border: 0; object-fit: cover; }
+.map-frame img { transition: transform .3s ease; }
+a.map-frame:hover img { transform: scale(1.03); }
+
+/* --- Galerie --- */
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.gallery figure { margin: 0; aspect-ratio: 4 / 5; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-surface); border: var(--line) solid var(--color-ink); }
+.gallery figure:nth-child(3n+1) { background: var(--color-brown); }
+.gallery figure:nth-child(3n+1) .placeholder,
+.gallery figure:nth-child(3n) .placeholder { color: var(--color-on-accent); }
+.gallery figure:nth-child(3n) { background: var(--color-green); }
+.gallery img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+
+/* --- FAQ --- */
+.faq { max-width: 820px; border-top: var(--line) solid var(--color-ink); }
+.faq details { border-bottom: var(--line) solid var(--color-ink); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 20px 44px 20px 0; position: relative;
+  font-weight: 700; font-size: 1.05rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  font-size: 1.6rem; font-weight: 400; transition: transform .2s;
+}
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq details p { margin: 0 0 20px; color: var(--color-text-muted); }
+
+/* --- Bloc inscription --- */
+.cta-block {
+  background: var(--color-green); color: var(--color-on-accent);
+  border: var(--line) solid var(--color-ink);
+  border-radius: var(--radius); padding: 56px 40px; text-align: center;
+}
+.cta-block h2 { color: var(--color-on-accent); }
+.cta-block p { max-width: 56ch; margin: 0 auto 24px; }
+.cta-block .btn { background: var(--color-surface); color: var(--color-ink); }
+
+/* --- Pied de page --- */
+footer { padding: 40px 0; border-top: var(--line) solid var(--color-ink); color: var(--color-text-muted); font-size: .9rem; }
+footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+footer a { color: var(--color-ink); }
+
+/* Encadré d'avertissement (règle des lots) */
+.card.notice { margin-top: 20px; background: var(--color-brown); color: var(--color-on-accent); }
+.card.notice h3 { color: var(--color-on-accent); }
+
+/* Tableau des temps impartis */
+.table-wrap { overflow-x: auto; background: var(--color-surface); border: var(--line) solid var(--color-ink); border-radius: var(--radius-sm); }
+.splits { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.splits th { text-align: left; background: var(--color-ink); color: var(--color-on-accent); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; padding: 12px 14px; }
+.splits td { padding: 9px 14px; border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent); }
+.splits tr.final td { background: var(--color-green); color: var(--color-on-accent); font-weight: 700; border-bottom: 0; }
+
+/* Règles + tableau côte à côte */
+.rules-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: start; }
+.rules-grid .rules { margin-top: 18px; }
+.rules-grid #barrieres h3 { margin-bottom: 18px; }
+.splits td, .splits th { padding-top: 6px; padding-bottom: 6px; line-height: 1.3; font-size: 0.95rem; }
+.note { font-size: .85rem; color: var(--color-text-muted); margin: 10px 0 0; }
+@media (max-width: 860px) { .rules-grid { grid-template-columns: 1fr; } }
+
+/* Zone de départ / ravitaillement (sous la carte du parcours) */
+.two-col.zone { margin-top: 48px; align-items: center; }
+.zone .map-frame { aspect-ratio: 1113 / 761; }
+
+/* Programme : frise horizontale sur ordinateur, verticale sur mobile */
+@media (min-width: 861px) {
+  .timeline {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px;
+    border-left: 0; border-top: var(--line) solid var(--color-ink);
+    margin-top: 36px;
+  }
+  .timeline li { padding: 26px 0 0; }
+  .timeline li::before { left: 0; top: -8px; }
+}
