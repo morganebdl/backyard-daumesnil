@@ -321,3 +321,17 @@ footer a { color: var(--color-ink); }
   .timeline li { padding: 26px 0 0; }
   .timeline li::before { left: 0; top: -8px; }
 }
+
+/* Mobile : une colonne de grille ne doit jamais élargir la page
+   (le tableau défile horizontalement dans son cadre si besoin) */
+.rules-grid > *, .two-col > *, .hero-grid > *, .cards > * { min-width: 0; }
+@media (max-width: 860px) {
+  .rules-grid, .two-col, .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .splits td, .splits th { padding-left: 10px; padding-right: 10px; }
+}
+@media (max-width: 380px) {
+  .nav .logo { font-size: .95rem; gap: 8px; }
+  .stats { gap: 10px; }
+  .stat { padding: 16px; }
+  .stat strong { font-size: 1.5rem; }
+}
