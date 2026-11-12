@@ -168,7 +168,7 @@ section.alt { background: var(--color-bg-alt); }
   }
   .hero > .container { width: 100%; }
   .hero-grid { grid-template-columns: 1.1fr 1fr; gap: 48px; }
-  .hero h1 { font-size: clamp(2.4rem, min(5.2vw, 9.5vh), 5rem); margin-bottom: 0.3em; white-space: nowrap; }
+  .hero h1 { font-size: clamp(2.4rem, min(4.6vw, 9.5vh), 5rem); margin-bottom: 0.3em; white-space: nowrap; }
   .hero .label.date { font-size: clamp(1rem, 2.6vh, 1.5rem); margin-bottom: clamp(10px, 2.5vh, 22px); }
   .hero-meta { margin: 0 0 clamp(12px, 2.8vh, 28px); }
   .countdown { margin-top: clamp(14px, 3vh, 32px); }
@@ -307,14 +307,14 @@ footer a { color: var(--color-ink); }
 .note { font-size: .85rem; color: var(--color-text-muted); margin: 10px 0 0; }
 @media (max-width: 860px) { .rules-grid { grid-template-columns: 1fr; } }
 
-/* Zone de départ / ravitaillement (sous la carte du parcours) */
-.two-col.zone { margin-top: 48px; align-items: center; }
-.zone .map-frame { aspect-ratio: 1113 / 761; }
+/* Image de la zone de départ (section Parcours) */
+.map-frame.spaced { aspect-ratio: 1113 / 761; }
+.spaced { margin-top: 36px; }
 
 /* Programme : frise horizontale sur ordinateur, verticale sur mobile */
 @media (min-width: 861px) {
   .timeline {
-    display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px;
+    display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 20px;
     border-left: 0; border-top: var(--line) solid var(--color-ink);
     margin-top: 36px;
   }
@@ -335,3 +335,43 @@ footer a { color: var(--color-ink); }
   .stat { padding: 16px; }
   .stat strong { font-size: 1.5rem; }
 }
+
+/* Carte interactive Trace de Trail */
+.trace-frame {
+  width: 100%; height: 800px; border: var(--line) solid var(--color-ink);
+  border-radius: var(--radius); background: var(--color-surface);
+}
+@media (max-width: 860px) { .trace-frame { height: 520px; } }
+@media (max-width: 380px) {
+  .countdown div { min-width: 0; padding: 8px 10px; }
+  .countdown strong { font-size: 1.6rem; }
+}
+
+/* Lien Google Maps « Lac Daumesnil » dans l'en-tête : simplement souligné */
+.meta-link { color: var(--color-ink); text-decoration: underline; text-underline-offset: 4px; }
+.meta-link:hover { text-decoration-thickness: 2px; }
+
+/* --- Comment gagner : cartes de lots --- */
+.prizes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: stretch; margin-top: 32px; }
+.prize-card {
+  background: var(--color-surface); border: var(--line) solid var(--color-ink);
+  border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column;
+}
+.prize-head {
+  display: flex; align-items: center; gap: 18px; padding: 20px 26px;
+  color: var(--color-on-accent); border-bottom: var(--line) solid var(--color-ink);
+}
+.prize-head--solo { background: var(--color-brown); }
+.prize-head--team { background: var(--color-green); }
+.prize-head h3 { color: var(--color-on-accent); margin: 0; font-size: 1.4rem; }
+.prize-sub { font-size: .95rem; font-weight: 500; text-transform: none; letter-spacing: 0; white-space: nowrap; }
+.prize-body { padding: 22px 26px 26px; flex: 1; }
+.prize-body h4 {
+  margin: 0 0 8px; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.prize-body p { margin: 0 0 20px; }
+.prize-list { list-style: none; padding: 0; margin: 0; border-top: var(--line) solid var(--color-ink); }
+.prize-list li { padding: 10px 0; border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent); font-weight: 700; }
+.prize-note { margin: 14px 0 0 !important; font-size: .9rem; color: var(--color-text-muted); }
+@media (max-width: 760px) { .prizes { grid-template-columns: minmax(0, 1fr); } }
