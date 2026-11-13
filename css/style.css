@@ -30,7 +30,9 @@ section { padding: 80px 0; }
 section.alt { background: var(--color-bg-alt); }
 .lead { font-size: 1.12rem; color: var(--color-text-muted); }
 
-/* --- Étiquette encadrée « +++ | TEXTE » (signature de la charte) --- */
+/* --- Étiquette encadrée « boucle | TEXTE » (signature de la charte) ---
+   La case de gauche affiche une petite boucle fléchée (l'idée de la backyard).
+   Couleur du trait : « %231c1c1c » dans l'URL ci-dessous (= --color-ink). */
 .kicker, .label {
   display: inline-flex; align-items: stretch;
   border: var(--line) solid var(--color-ink);
@@ -38,9 +40,9 @@ section.alt { background: var(--color-bg-alt); }
   margin-bottom: 22px; background: transparent; color: var(--color-ink);
 }
 .kicker::before, .label::before {
-  content: "+ + +"; display: grid; place-items: center;
-  padding: 6px 18px; border-right: var(--line) solid var(--color-ink);
-  letter-spacing: 0.1em; font-weight: 400;
+  content: ""; flex: none; width: 3.6em; min-width: 62px; align-self: stretch;
+  border-right: var(--line) solid var(--color-ink);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 24' fill='none' stroke='%231c1c1c' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21.4 4H14a8 8 0 0 0 0 16h16a8 8 0 0 0 0-16h-5.8'/%3E%3Cpath d='M26.8 1.2l-3 2.8 3 2.8'/%3E%3C/svg%3E") center / 40px auto no-repeat;
 }
 .kicker { padding-right: 22px; gap: 22px; align-items: center; min-height: 40px; line-height: 1; }
 .kicker::before { align-self: stretch; }
